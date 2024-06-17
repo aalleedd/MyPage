@@ -7,38 +7,103 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>반응형 홈페이지</h1>
-        <nav>
-            <ul>
-                <li><a href="#home">홈</a></li>
-                <li><a href="#about">소개</a></li>
-                <li><a href="#services">서비스</a></li>
-                <li><a href="#contact">연락처</a></li>
-            </ul>
-        </nav>
+    <header class="navbar">
+        <a href="#home">홈</a>
+        <a href="#about">소개</a>
+        <a href="#services">서비스</a>
+        <a href="#contact">연락처</a>
+        <a href="#login" onclick="openModal('loginModal')">로그인</a>
+        <a href="#signup" onclick="openModal('signupModal')">회원가입</a>
+        <input type="text" id="searchInput" placeholder="검색...">
+        <button onclick="search()">검색</button>
+        <button id="darkModeToggle" onclick="toggleDarkMode()">다크 모드</button>
     </header>
+    
     <main>
-        <section id="home">
-            <h2>홈</h2>
-            <p>여기에 홈페이지의 주요 내용을 작성하세요.</p>
+        <section id="home" class="hero-section">
+            <div class="hero-content">
+                <h1>환영합니다!</h1>
+                <p>여기에 홈페이지의 주요 내용을 작성하세요.</p>
+            </div>
         </section>
+        
         <section id="about">
             <h2>소개</h2>
             <p>회사나 서비스에 대한 소개를 작성하세요.</p>
         </section>
-        <section id="services">
+
+        <section id="services" class="slider">
             <h2>서비스</h2>
-            <p>제공하는 서비스에 대한 설명을 작성하세요.</p>
+            <div class="slides">
+                <div class="slide"><img src="images/slide1.jpg" alt="슬라이드 1"></div>
+                <div class="slide"><img src="images/slide2.jpg" alt="슬라이드 2"></div>
+                <div class="slide"><img src="images/slide3.jpg" alt="슬라이드 3"></div>
+            </div>
+            <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+            <button class="next" onclick="moveSlide(1)">&#10095;</button>
         </section>
+
         <section id="contact">
             <h2>연락처</h2>
-            <p>연락처 정보를 작성하세요.</p>
+            <form>
+                <label for="name">이름:</label>
+                <input type="text" id="name" name="name">
+                <label for="email">이메일:</label>
+                <input type="email" id="email" name="email">
+                <label for="message">메시지:</label>
+                <textarea id="message" name="message"></textarea>
+                <button type="submit">보내기</button>
+            </form>
+        </section>
+
+        <section id="social-media">
+            <h2>소셜 미디어</h2>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+                <a href="https://www.twitter.com" target="_blank"><img src="images/twitter.png" alt="Twitter"></a>
+                <a href="https://www.instagram.com" target="_blank"><img src="images/instagram.png" alt="Instagram"></a>
+            </div>
+        </section>
+
+        <section id="map">
+            <h2>지도</h2>
+            <div id="map-container"></div>
         </section>
     </main>
+
     <footer>
         <p>&copy; 2024 반응형 홈페이지. 모든 권리 보유.</p>
     </footer>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>로그인</h2>
+            <form>
+                <label for="loginEmail">이메일:</label>
+                <input type="email" id="loginEmail" name="loginEmail">
+                <label for="loginPassword">비밀번호:</label>
+                <input type="password" id="loginPassword" name="loginPassword">
+                <button type="submit">로그인</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">&times;</span>
+            <h2>회원가입</h2>
+            <form>
+                <label for="signupEmail">이메일:</label>
+                <input type="email" id="signupEmail" name="signupEmail">
+                <label for="signupPassword">비밀번호:</label>
+                <input type="password" id="signupPassword" name="signupPassword">
+                <button type="submit">회원가입</button>
+            </form>
+        </div>
+    </div>
+
     <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap"></script>
 </body>
 </html>
